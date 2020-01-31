@@ -20,7 +20,7 @@ setfont lat9w-16
 
 ## Partition the disk
 
-Now the disk has to be partitioned. There are a variety of tools such as `fdisk` or `cfdisk` to do this. Create a primary partition and a swap partition. If desired, another partition can be created for `/home`. The swap partition should be abut the same size as the systems RAM.
+Now the disk has to be partitioned. There are a variety of tools such as `fdisk` or `cfdisk` to do this. Create a primary partition and a swap partition. If desired, another partition can be created for `/home`. The swap partition should be about the same size as the systems RAM.
 
 ``` bash
 cfdisk
