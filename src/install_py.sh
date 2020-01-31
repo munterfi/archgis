@@ -8,5 +8,5 @@ virtualenv -p /usr/bin/python3 spatial
 source spatial/bin/activate
 
 # Install spatial packages
-pip install geopandas rasterio pydeck
-
+pip install geopandas rasterio pydeck ipykernel
+ipython kernel install --user #--project=spatial
