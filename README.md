@@ -1,7 +1,9 @@
 # ArchGIS
 
+This repository contains instructions for installing Arch Linux and expanding it with the most common spatial libraries (GDAL, GEOS and PROJ) and tools (Python, R, Julia, JupyterLab, Docker and QGIS).
+
 ## Get Arch Linux
-Download the .iso file from [www.archlinux.org](https://www.archlinux.org/download/). Make a bootable USB stick or attach the iso to the VMs as optical drive.
+Download the `.iso` file from [www.archlinux.org](https://www.archlinux.org/download/). Make a bootable USB stick or if the installation is done using Virtual Box, attach the `.iso` to the VM as optical drive.
 
 ## Boot Arch from ISO
 
@@ -18,20 +20,19 @@ setfont lat9w-16
 
 ## Partition the disk
 
-Now the disk has to be partitioned. There are a variety of tools such as ´fdisk´ or ´cfdisk´ to do this. Create a primary partition and a swap partition. If desired, another partition can be created for home.
+Now the disk has to be partitioned. There are a variety of tools such as `fdisk` or `cfdisk` to do this. Create a primary partition and a swap partition. If desired, another partition can be created for `/home`. The swap partition should be abut the same size as the systems RAM.
 
 ``` bash
 cfdisk
+> create: sda1 83 Linux filesystem
+> create: sda2 82 Linux swap
+> create: sda3 83 Linux filesystem
 ```
-Create:
-
-* sda1 83
-* sda2 82
-* sda3 83
 
 Write & Quit.
 
 ## Formatting
+The main partition and the home partition are formatted using `mkfs.ext4` and the swap partition by `mkswap`. The command `swapon` makes the swap device available.
 ``` bash
 mkfs.ext4 /dev/sda1
 mkfs.ext4 /dev/sda3
@@ -52,25 +53,25 @@ Check results:
 lsblk /dev/sda
 ```
 
-# Installation of Arch Linux
-Adjust mirrorlist (for Switzerland):
+## Installation of Arch Linux
+Adjust mirrorlist (for in this example for Switzerland, replace with your location):
 ``` bash
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 grep -E -A 1 ".*Switzerland.*$" /etc/pacman.d/mirrorlist.bak | sed '/--/d' > /etc/pacman.d/mirrorlist
 cat /etc/pacman.d/mirrorlist
 ```
 
-Check Network:
+Check network access:
 ``` bash
 ping -c3 www.archlinux.org
 ```
 
-Install arch base package, kernel some tools:
+Install arch base package, kernel and some commandline tools:
 ``` bash
 pacstrap /mnt base base-devel linux linux-firmware vim bash-completion git
 ```
 
-Generate FSTAB with UUID (partition descriptor):
+Generate FSTAB (partition descriptor) with UUID:
 ``` bash
 genfstab -U -p /mnt >> /mnt/etc/fstab
 cat /mnt/etc/fstab
@@ -84,15 +85,12 @@ Change to root in new system:
 arch-chroot /mnt/
 ```
 
+Open the loacle.gen file and uncomment the locales that should be generated. In this example en_DK.UTF-8 as it generates an english locale with continental European metrics. 
 
-## Configure and generate locale
 ``` bash
 vim /etc/locale.gen
-
-and uncomment:
-``` bash
-> #en_DK.UTF-8 UTF-8
-> #en_DK ISO-8859-1
+> uncomment: en_DK.UTF-8 UTF-8
+> uncomment: en_DK ISO-8859-1
 ```
 
 Generate locale:
@@ -100,19 +98,19 @@ Generate locale:
 locale-gen
 ```
 
-Create language configuration file
+Create language configuration file:
 ``` bash
 echo LANG=en_DK.UTF-8 > /etc/locale.conf
 export LANG=en_DK.UTF-8
 ```
 
-Set CH keyboard configs to persist between sessions
+Set CH keyboard configuration to persist between sessions:
 ``` bash
 echo KEYMAP=de_CH-latin1 > /etc/vconsole.conf
 echo FONT=lat9w-16 >> /etc/vconsole.conf
 ```
 
-Set timezone and synchronize the hardware clock with the system
+Set timezone and synchronize the hardware clock with the system:
 ``` bash
 ln -s /usr/share/zoneinfo/Europe/Zurich /etc/localtime
 hwclock --systohc --utc
@@ -122,18 +120,15 @@ hwclock --systohc --utc
 Intelspecific microcode:
 ``` bash
 pacman -S intel-ucode
-
-Ensure internet connection after startup
-``` bash
-pacman -S dhcpcd
 ```
 
-and for wireless:
+Ensure internet connection after startup and install packages needed for wireless connections:
 ``` bash
+pacman -S dhcpcd
 pacman -S wpa_supplicant netctl dialog
 ```
 
-Set hostname and hosts
+Set hostname and hosts:
 ``` bash
 echo archgis > /etc/hostname
 vim /etc/hosts
@@ -142,31 +137,36 @@ vim /etc/hosts
 > 127.0.1.1   archgis.localdomain   archgis
 ```
 
-
-##  Root password and user
+## Create user with sudo permission
+Set root password:
 ``` bash
 passwd
 ```
 
-Add user:
+Create a new user and add important groups:
 ``` bash
 useradd -m mufix
 passwd mufix
 usermod -a -G wheel,audio,video,optical,storage,power mufix
+```
+
+Enable `sudo` for the wheel group:
+``` bash
 visudo
 > uncomment: %wheel ALL=(ALL) ALL
 ```
 
 
-## Configure GRUB bootloader
+## Bootloader and shutdown system
+
+Configure GRUB as bootloader:
 ``` bash
 pacman -S grub
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-
-## Update all and exit arch-chroot
+Update all packages and exit arch-chroot:
 ``` bash
 pacman -Syu
 exit
@@ -178,19 +178,20 @@ umount /mnt/home
 umount /mnt
 ```
 
-## Reboot
+Reboot:
 ``` bash
-reboot / shutdown now
+shutdown now
 ```
-Remove ISO
+
+Remove the `.iso` USB stick or detach as optical drive in the VM and start the system again.
 
 ## Restart and login as Root
-Configure the network first
-Check the second entry:
+Configure the network has to be configured. Check the second entry:
 ``` bash
 ip link
 ```
 
+Depending on the name, which was identified above, configure the `enp0s3.network` file:
 ``` bash
 vim /etc/systemd/network/enp0s3.network
 > [Match]
@@ -199,13 +200,13 @@ vim /etc/systemd/network/enp0s3.network
 > DHCP=yes
 ```
 
+Restart networkd:
 ``` bash
 systemctl restart systemd-networkd
 systemctl enable systemd-networkd
 ```
 
-Set the DNS nameserver from Google (Alternatives?):
-
+Set the DNS nameserver from Google (or an alternative...):
 ``` bash
 vim /etc/resolv.conf
 > nameserver 8.8.8.8
@@ -214,9 +215,8 @@ vim /etc/resolv.conf
 
 ## Desktop
 
-GPU driver:
-check the wiki and install video driver suitable for your GPU: In my case nvidia
-Install video drivers before XOrg and Gnome to avoid bad bindings
+GPU driver: Check the wiki and install video driver suitable for your GPU: In my case nvidia...
+Install video drivers before XOrg and Gnome to avoid bad bindings:
 ``` bash
 pacman -S nvidia-utils lib32-nvidia-utils nvidia-settings
 ```
@@ -226,7 +226,6 @@ Install display server:
 pacman -S xorg xorg-server
 ```
 
-
 Install Gnome:
 ``` bash
 pacman -S gnome gnome-extra
@@ -234,3 +233,16 @@ systemctl enable gdm
 systemctl start gdm.service
 ```
 
+## Install ArchGIS
+Clone the repo and run the installer script:
+``` bash
+git clone https://github.com/munterfinger/archgis.git
+cd archgis
+sudo ./install_archgis.sh
+```
+This will take a few minutes: Time for a coffee :)
+
+## References
+
+* Arch: www.archlinux.org
+* Gnome: https://wiki.archlinux.org/index.php/GNOME
