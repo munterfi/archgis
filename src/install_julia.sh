@@ -3,8 +3,16 @@
 # Install Julia
 pacman -S --noconfirm julia
 
-# Install spatial packages
-julia < 'using(Pkg); Pkg.add("DataFrames")' &
+# Install packages
+julia -e 'using(Pkg); Pkg.add("DataFrames");'
+julia -e 'using(Pkg); Pkg.add("Distributions");'
+julia -e 'using(Pkg); Pkg.add("RDatasets");'
+julia -e 'using(Pkg); Pkg.add("Plots");'
+julia -e 'using(Pkg); Pkg.add("StatsPlots");'
+
+# Make available to jupyter lab
+julia -e 'using(Pkg); Pkg.add("IJulia");'
+
 # Create named pipe
 #mkfifo pipe
 
