@@ -85,7 +85,7 @@ Change to root in new system:
 arch-chroot /mnt/
 ```
 
-Open the loacle.gen file and uncomment the locales that should be generated. In this example en_DK.UTF-8 as it generates an english locale with continental European metrics. 
+Open the loacle.gen file and uncomment the locales that should be generated. In this example en_DK.UTF-8 as it generates an english locale with continental European metrics.
 
 ``` bash
 vim /etc/locale.gen
@@ -241,6 +241,8 @@ cd archgis
 sudo ./install_archgis.sh
 ```
 This will take a few minutes: Time for a coffee :)
+
+![](/docs/install_archgis.png)
 
 ## References
 
