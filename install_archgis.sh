@@ -67,7 +67,7 @@ systemctl enable docker.service
 
 # Install JupyterLab and enable widgets
 echo "(8/9) Installing JupyterLab..."
-pacman -S --noconfirm jupyterlab > /dev/null 2>&1
+pacman -S --noconfirm firefox jupyterlab > /dev/null 2>&1
 jupyter nbextension enable --py --sys-prefix widgetsnbextension > /dev/null 2>&1
 
 # Install QGIS
