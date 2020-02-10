@@ -28,20 +28,20 @@ fi
 echo "*** Updating ArchGIS ***"
 
 echo "(1/5) Updating pacman packages..."
-pacman -Syu --noconfirm > /dev/null 2>&1
+pacman -Syu --noconfirm > /dev/null
 
 echo "(2/5) Updating yay packages..."
-sudo -u $SUDO_USER yay -Syu --noconfirm > /dev/null 2>&1
+sudo -u $SUDO_USER yay -Syu --noconfirm > /dev/null
 
 echo "(3/5) Updating python packages..."
 source /home/$SUDO_USER/py/spatial/bin/activate
-pip install -U $(pip freeze | awk '{split($0, a, "=="); print a[1]}') > /dev/null 2>&1
+pip install -U $(pip freeze | awk '{split($0, a, "=="); print a[1]}') > /dev/null
 
-echo "(4/5) Updating r packages..."
-Rscript -e 'update.packages(ask = FALSE, repo = "http://cran.rstudio.com/")' > /dev/null 2>&1
+echo "(4/5) Updating R packages..."
+Rscript -e 'update.packages(ask = FALSE, repo = "http://cran.rstudio.com/")' > /dev/null
 
 echo "(5/5) Updating julia packages..."
-julia -e 'using(Pkg); Pkg.update();' > /dev/null 2>&1
+julia -e 'using(Pkg); Pkg.update();' > /dev/null
 
 echo Done.
 
