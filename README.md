@@ -244,6 +244,13 @@ This will take a few minutes: Time for a coffee :)
 
 ![](/docs/install_archgis.png)
 
+
+## Update ArchGIS
+To update ArchGIS including the R, Python and  Julia packages run the updater script:
+``` bash
+sudo ./update_archgis.sh
+```
+
 ## References
 
 * Arch: www.archlinux.org
