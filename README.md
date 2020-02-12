@@ -5,7 +5,7 @@ spatial libraries (GDAL, GEOS and PROJ) and tools (Python, R, Julia and Docker) 
 reading, processing, analyzing, visualizing and storing spatial data sets.
 The installation of the ArchGIS extension requires a proper Arch Linux installation
 with a desktop environment (e.g. Gnome) as starting point. The desktop environment
-is required as ArchGIS also contains GUI applications (Jupyter Lab, RStudio, QGIS).
+is required as ArchGIS also contains GUI applications (JupyterLab, RStudio, QGIS).
 To set up a fresh Arch Linux installation, follow these instructions: [Setting up Arch Linux for ArchGIS](docs/SETUP.md)
 
 **Note:** ArchGIS is designed to be installed by user with sudo rights,
@@ -42,8 +42,15 @@ In order to test the ArchGIS installation run the test script:
 ./archgis_test.sh
 ```
 
+This will download earthquake data from the USGS Hazard feed and country polygons from Natural Earth.
+These data sets are then read in by Python, R and Julia using GDAL to check the binding
+to this library. Then CRS transformations are performed using PROJ and spatial
+intersections using GEOS. If the test finishes successfully, the spatial libraries
+are installed properly and the bindings to Python, R and Julia are correct.
+
+
 ## Updating ArchGIS
-To update ArchGIS including the R, Python and Julia packages run the updater script:
+To update ArchGIS including the Python, R and Julia packages run the updater script:
 ``` bash
 sudo ./archgis_update.sh
 ```
@@ -53,7 +60,7 @@ sudo ./archgis_update.sh
 
 ### OSRM
 
-### Jupyter Lab
+### JupyterLab
 
 ## References
 

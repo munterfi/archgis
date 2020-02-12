@@ -33,14 +33,14 @@ pacman -Syu --noconfirm > /dev/null
 echo "(2/5) Updating yay packages..."
 sudo -u $SUDO_USER yay -Syu --noconfirm > /dev/null
 
-echo "(3/5) Updating python packages..."
+echo "(3/5) Updating Python packages..."
 source /home/$SUDO_USER/py/spatial/bin/activate
 pip install -U $(pip freeze | awk '{split($0, a, "=="); print a[1]}') > /dev/null
 
 echo "(4/5) Updating R packages..."
 Rscript -e 'update.packages(ask = FALSE, repo = "http://cran.rstudio.com/")' > /dev/null
 
-echo "(5/5) Updating julia packages..."
+echo "(5/5) Updating Julia packages..."
 julia -e 'using(Pkg); Pkg.update();' > /dev/null
 
 echo Done.

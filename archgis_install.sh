@@ -6,7 +6,7 @@
 #                                                          #
 #  Spatial libraries and tools on Arch Linux               #
 #  -------------------------------------------------       #
-#  This script installs the spatial librarires GDAL,       #
+#  This script installs the spatial libraries GDAL,        #
 #  GEOS and PROJ on an exisitng Arch Linux. Then some      #
 #  common tools for reading, processing, visualizing       #
 #  and storing spatial data are installed.                 #
@@ -43,7 +43,7 @@ echo "(3/9) Installing spatial libraries..."
 
 # Create new python env "spatial"
 # Install spatial packages (geopandas, rasterio, ...) and Jupyter Lab
-echo "(4/9) Create new python env and install spatial packages..."
+echo "(4/9) Create new Python env and install spatial packages..."
 ./src/install_py.sh > /dev/null
 
 # Install R, spatial packages (data.table, sf, stars, hereR, ...) and RStudio
@@ -55,13 +55,13 @@ echo "(6/9) Installing Julia with spatial packages..."
 ./src/install_julia.sh > /dev/null
 
 # Install Docker
-echo "(7/9) Installing Docker..."
+echo "(7/9) Installing Docker and enable service..."
 pacman -S --noconfirm docker > /dev/null
-systemctl start docker.service
-systemctl enable docker.service
+systemctl start docker.service > /dev/null
+systemctl enable docker.service > /dev/null
 
 # Install JupyterLab and enable widgets
-echo "(8/9) Installing JupyterLab..."
+echo "(8/9) Installing JupyterLab and enabling widgets..."
 pacman -S --noconfirm firefox jupyterlab > /dev/null
 jupyter nbextension enable --py --sys-prefix widgetsnbextension > /dev/null
 
