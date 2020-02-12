@@ -1,7 +1,7 @@
 # ArchGIS <img src="docs/figures/archgis_logo.png" align="right" alt="" width="120" />
 
 ArchGIS is an extension for Arch Linux that expands it with the most common
-spatial libraries (GDAL, GEOS and PROJ) and tools (Python, R, Julia and QGIS) for
+spatial libraries (GDAL, GEOS and PROJ) and tools (Python, R, Julia and Docker) for
 reading, processing, analyzing, visualizing and storing spatial data sets.
 The installation of the ArchGIS extension requires a proper Arch Linux installation
 with a desktop environment (e.g. Gnome) as starting point. The desktop environment
