@@ -5,7 +5,7 @@ spatial libraries (GDAL, GEOS and PROJ) and tools (Python, R, Julia and Docker) 
 reading, processing, analyzing, visualizing and storing spatial data sets.
 The installation of the ArchGIS extension requires a proper Arch Linux installation
 with a desktop environment (e.g. Gnome) as starting point. The desktop environment
-is required as also contains GUI applications (Jupyter Lab, RStudio, QGIS).
+is required as ArchGIS also contains GUI applications (Jupyter Lab, RStudio, QGIS).
 To set up a fresh Arch Linux installation, follow these instructions: [Setting up Arch Linux for ArchGIS](docs/SETUP.md)
 
 **Note:** ArchGIS is designed to be installed by user with sudo rights,
@@ -47,6 +47,13 @@ To update ArchGIS including the R, Python and Julia packages run the updater scr
 ``` bash
 sudo ./archgis_update.sh
 ```
+
+## Examples
+### PostGIS
+
+### OSRM
+
+### Jupyter Lab
 
 ## References
 
