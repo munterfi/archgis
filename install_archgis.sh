@@ -1,30 +1,25 @@
 #!/bin/bash
-##########################################################
-#  Install ArchGIS                                       #
-#  Version: 0.1.0                                        #
-#  File: ~/archgis/install_archgis.sh                    #
-#                                                        #
-#  Spatial libraries and tools on Arch Linux             #
-#  -------------------------------------------------     #
-#  This script installs the spatial librarires GDAL,     #
-#  GEOS and PROJ on an exisitng Arch Linux. Then some    #
-#  common tools for reading, processing, visualizing     #
-#  and storing spatial data are installed.               #
-#                                                        #
-#  Setup:                                                #
-#     $ git clone https://github.com/munterfinger/archgis #
-#     $ cd archgis                                       #
-#                                                        #
-#  Usage:                                                #
-#     $ sudo ./install_archgis.sh                        #
-#                                                        #
-#  Examples:                                             #
-#     $ tree                                             #
-#     $ tree /etc/opt                                    #
-#     $ tree ..                                          #
-#                                                        #
-#  GNU General Public License 3.0 - by Merlin Unterfinger #
-##########################################################
+############################################################
+#  Install ArchGIS                                         #
+#  Version: 0.1.0                                          #
+#  File: ~/archgis/install_archgis.sh                      #
+#                                                          #
+#  Spatial libraries and tools on Arch Linux               #
+#  -------------------------------------------------       #
+#  This script installs the spatial librarires GDAL,       #
+#  GEOS and PROJ on an exisitng Arch Linux. Then some      #
+#  common tools for reading, processing, visualizing       #
+#  and storing spatial data are installed.                 #
+#                                                          #
+#  Setup:                                                  #
+#     $ git clone https://github.com/munterfinger/archgis  #
+#     $ cd archgis                                         #
+#                                                          #
+#  Usage:                                                  #
+#     $ sudo ./install_archgis.sh                          #
+#                                                          #
+#  GNU General Public License 3.0 - by Merlin Unterfinger  #
+############################################################
 
 if (( $EUID != 0 )); then
     echo ERROR: Installing archgis failed. Please run as root.
@@ -75,4 +70,3 @@ echo "(9/9) Installing QGIS..."
 pacman -S --noconfirm qgis > /dev/null
 
 echo Done.
-
