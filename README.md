@@ -1,12 +1,12 @@
 # ArchGIS
 
-ArcGIS is an extension for Arch Linux that expands it with the most common
+ArchGIS is an extension for Arch Linux that expands it with the most common
 spatial libraries (GDAL, GEOS and PROJ) and tools (Python, R, Julia and QGIS) for
 reading, processing, analyzing, visualizing and storing spatial data sets.
 The installation of the ArchGIS extension requires a proper Arch Linux installation
 with a desktop environment (e.g. Gnome) as starting point. The desktop environment
 is required as also contains GUI applications (Jupyter Lab, RStudio, QGIS).
-To set up a fresh Arch Linux installation, follow these instructions: [Setting up Arch Linux](docs/archlinux_setup.md)
+To set up a fresh Arch Linux installation, follow these instructions: [Setting up Arch Linux for ArchGIS](docs/SETUP.md)
 
 **Note:** ArchGIS is designed to be installed by user with sudo rights,
 but not as root itself. If no user with root privileges exists yet,
@@ -50,7 +50,7 @@ sudo ./archgis_update.sh
 
 ## References
 
-* Arch: https://archlinux.org
+* Arch Linux: https://archlinux.org
 * GDAL: https://gdal.org
 * PROJ: https://proj.org
 * GEOS: https://trac.osgeo.org/geos

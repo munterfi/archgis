@@ -1,12 +1,12 @@
-# Arch Linux Setup
+# Setting up Arch Linux for ArchGIS
 
-Author: Merlin Unterfinger
-Date: 2020-02-12
+Author: Merlin Unterfinger  
+Date: 2020-02-12  
 
 **Note:** There are many different ways to install and configure Arch Linux.
 This installation sets the `en_DK.UTF-8` locale, which provides an English version
 with continental European metrics (e.g. meters, euros, dd-mm-yyyy...).
-Further it is initializing a Swiss keyboard layout and a fond that supports german
+Further it is initializing a Swiss keyboard layout and a font that supports german
 "Umlauts" (ä, ö and ü). This is just one possible ways of installing Arch,
 feel free to adjust the steps accordingly ;)
 
