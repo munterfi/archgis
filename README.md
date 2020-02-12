@@ -1,4 +1,4 @@
-# ArchGIS
+# ArchGIS <img src="docs/figures/archgis_logo.png" align="right" alt="" width="120" />
 
 ArchGIS is an extension for Arch Linux that expands it with the most common
 spatial libraries (GDAL, GEOS and PROJ) and tools (Python, R, Julia and QGIS) for
@@ -33,7 +33,7 @@ sudo ./archgis_install.sh
 ```
 This will take a few minutes: Time for a coffee :)
 
-![](/docs/figures/archgis.png)
+![](/docs/figures/archgis_desktop.png)
 
 
 ## Testing ArchGIS
