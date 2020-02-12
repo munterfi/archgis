@@ -13,9 +13,11 @@
 #  Setup:                                                  #
 #     $ git clone https://github.com/munterfinger/archgis  #
 #     $ cd archgis                                         #
+#     $ sudo ./archgis_install.sh                          #
+#     $ sudo ./archgis_update.sh                           #
 #                                                          #
 #  Usage:                                                  #
-#     $ ./test_archgis.sh                                  #
+#     $ ./archgis_test.sh                                  #
 #                                                          #
 #  GNU General Public License 3.0 - by Merlin Unterfinger  #
 ############################################################
