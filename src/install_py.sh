@@ -9,8 +9,11 @@ virtualenv -p /usr/bin/python3 spatial
 source spatial/bin/activate && cd -
 
 # Install spatial packages
-pip install geopandas rasterio pydeck
+pip install rtree shapely pygeos libpysal geopandas rasterio pydeck
 
 # Make env availale to jupyter lab
 pip install ipykernel
 python -m ipykernel install --name=spatial
+
+# Deactivate virtual env
+source deactivate

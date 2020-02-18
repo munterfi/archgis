@@ -29,14 +29,14 @@ curl https://raw.githubusercontent.com/datasets/geo-countries/master/data/countr
 cd - && cd tests
 
 echo "(3/5) Checking Python spatial bindings..."
-source /home/$SUDO_USER/py/spatial/bin/activate
-python test_python.py
+#source /home/$SUDO_USER/py/spatial/bin/activate
+/home/$USER/py/spatial/bin/python test_python.py
 
 echo "(3/5) Checking R spatial bindings..."
 Rscript test_r.R
 
 echo "(4/5) Checking Julia spatial bindings..."
-julia -e test_julia.jl
+#julia -e test_julia.jl
 
 echo "(5/5) Removing test data..."
 cd - && rm -rf tests/data
