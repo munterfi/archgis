@@ -26,9 +26,14 @@
 using ArchGDAL;
 const AG = ArchGDAL;
 
-println("Check GDAL binding: Reading geojson")
-pts <- st_read("data/pts.geojson", quiet = TRUE)
-poly <- st_read("data/poly.geojson", quiet = TRUE)
+println("Check GDAL binding: Reading GeoJSON")
+AG.registerdrivers() do
+    pts = AG.read("data/pts.geojson");
+    poly = AG.read("data/poly.geojson");
+end
+
+pts = AG.read("data/pts.geojson");
+poly = AG.read("data/poly.geojson");
 
 println("Check PROJ binding: Transforming CRS")
 cent <-

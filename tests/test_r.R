@@ -11,7 +11,7 @@
 #  a spatial intersection operation using GEOS.            #
 #                                                          #
 #  Setup:                                                  #
-#     $ git clone https://github.com/munterfinger/archgis  #
+#     $ git clone https://github.com/munterfinger/archgis   #
 #     $ cd archgis                                         #
 #     $ sudo ./archgis_install.sh                          #
 #     $ sudo ./archgis_update.sh                           #
@@ -19,14 +19,14 @@
 #  Usage:                                                  #
 #     $ ./archgis_test.sh                                  #
 #                                                          #
-#  GNU General Public License 3.0 - by Merlin Unterfinger  #
+#  GNU General Public License 3.0 - by Merlin Unterfinger   #
 ############################################################
 
 # Pks
 library(sf)
 library(data.table)
 
-message("Check GDAL binding: Reading geojson")
+message("Check GDAL binding: Reading GeoJSON")
 pts <- st_read("data/pts.geojson", quiet = TRUE)
 poly <- st_read("data/poly.geojson", quiet = TRUE)
 
@@ -38,7 +38,7 @@ cent <-
   st_centroid() %>%
   st_as_text(pretty = TRUE)
 
-message("Check GEOS binding: Transforming CRS")
+message("Check GEOS binding: Count points in polygons")
 poly$EQ <-
   suppressMessages(st_intersects(poly, pts)) %>%
   lengths()

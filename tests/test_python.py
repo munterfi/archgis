@@ -25,26 +25,16 @@
 # Pks
 import geopandas as gpd
 
-print('Check GDAL binding: Reading geojson')
-pts <- st_read('data/pts.geojson', quiet = TRUE)
-poly <- st_read('data/poly.geojson', quiet = TRUE)
+print('Check GDAL binding: Reading GeoJSON')
+pts = gpd.read_file('data/pts.geojson')
+poly = gpd.read_file('data/poly.geojson')
 
 print('Check PROJ binding: Transforming CRS')
-cent <-
-  pts %>%
-  st_transform(2056) %>%
-  st_union() %>%
-  st_centroid() %>%
-  st_as_text(pretty = TRUE)
-print('Centroid EQs (EPSG:2056): ', cent)
+cent = pts.to_crs("EPSG:2056").unary_union.centroid.wkt
+print('Centroid EQs (EPSG:2056):', cent)
 
-print('Check GEOS binding: Transforming CRS')
-poly$EQ <- poly %>%
-  st_intersects(pts) %>%
-  lengths()
-poly %>%
-  data.table() %>%
-  .[order(EQ, decreasing = TRUE), .(ADMIN, EQ)] %>%
-  head(3)
+print('Check GEOS binding: Count points in polygons')
+counts = gpd.sjoin(pts, poly, op='within').groupby("ADMIN")["id"].count().sort_values(ascending=False)
+print(counts.head(3))
 
 print('*** Successfully finished ***')
