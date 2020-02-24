@@ -12,13 +12,13 @@
 #  and storing spatial data are installed.                 #
 #                                                          #
 #  Setup:                                                  #
-#     $ git clone https://github.com/munterfinger/archgis  #
+#     $ git clone https://github.com/munterfinger/archgis   #
 #     $ cd archgis                                         #
 #                                                          #
 #  Usage:                                                  #
 #     $ sudo ./archgis_install.sh                          #
 #                                                          #
-#  GNU General Public License 3.0 - by Merlin Unterfinger  #
+#  GNU General Public License 3.0 - by Merlin Unterfinger   #
 ############################################################
 
 if (( $EUID != 0 )); then
@@ -26,47 +26,77 @@ if (( $EUID != 0 )); then
     exit 1
 fi
 
+# Define vars
+export ARCHGIS_PATH=/opt/archgis
+export ARCHGIS_PROFILE=/etc/profile.d/archgis_profile.sh
+export ARCHGIS_VERSION="'0.1.0'"
+export ARCHGIS_LICENSE="'GNU General Public License 3.0'"
+export ARCHGIS_AUTHOR="'Merlin Unterfinger'"
+
+
 echo "*** Installing ArchGIS ***"
 
-
 # Update system
-echo "(1/9) Updating system..."
+echo "(1/10) Updating system..."
 pacman -Syu --noconfirm > /dev/null
+pacman -S --noconfirm figlet > /dev/null
+
+# Copy files and export vars
+echo "(2/10) Copying files and exporting variables..."
+# Copy files
+mkdir -p $ARCHGIS_PATH
+cp -r tests -t $ARCHGIS_PATH
+cp -t $ARCHGIS_PATH archgis_test.sh archgis_update.sh
+cp -t $ARCHGIS_PATH LICENS
+# Adding archgis env vars
+echo -e '#\n# /etc/profile.d/.archgis_profile\n#\n\n# ENV' > $ARCHGIS_PROFILE
+echo 'export ARCHGIS_PATH='$ARCHGIS_PATH >> $ARCHGIS_PROFILE
+echo 'export ARCHGIS_PROFILE='$ARCHGIS_PROFILE >> $ARCHGIS_PROFILE
+echo 'export ARCHGIS_VERSION='$ARCHGIS_VERSION >> $ARCHGIS_PROFILE
+echo 'export ARCHGIS_LICENSE='$ARCHGIS_LICENSE >> $ARCHGIS_PROFILE
+echo 'export ARCHGIS_AUTHOR='$ARCHGIS_AUTHOR >> $ARCHGIS_PROFILE
+# Adding alias
+echo -e '\n# ALIAS' >> $ARCHGIS_PROFILE
+echo alias archgis-update=$ARCHGIS_PATH/'archgis_update.sh' >> $ARCHGIS_PROFILE
+echo alias archgis-test=$ARCHGIS_PATH/'archgis_test.sh' >> $ARCHGIS_PROFILE
+echo alias archgis-info=$ARCHGIS_PATH/'archgis_info.sh' >> $ARCHGIS_PROFILE
+echo alias archgis-uninstall=$ARCHGIS_PATH/'archgis_uninstall.sh' >> $ARCHGIS_PROFILE
+echo -e '\n# APP' >> $ARCHGIS_PROFILE
 
 # Configure yay to access AUR packages
-echo "(2/9) Configuring yay to access AUR packages..."
+echo "(3/10) Configuring yay to access AUR packages..."
 ./src/install_yay.sh > /dev/null
 
 # Install spatial libraries (GDAL, GEOS, PROJ, ...)
-echo "(3/9) Installing spatial libraries..."
+echo "(4/10) Installing spatial libraries..."
 ./src/install_spatlibs.sh > /dev/null
 
 # Create new python env "spatial"
 # Install spatial packages (geopandas, rasterio, ...) and Jupyter Lab
-echo "(4/9) Create new Python env and install spatial packages..."
-./src/install_py.sh > /dev/null
+echo "(5/10) Create new Python env and install spatial packages..."
+./src/install_python.sh > /dev/null
 
 # Install R, spatial packages (data.table, sf, stars, hereR, ...) and RStudio
-echo "(5/9) Installing R with spatial packages..."
+echo "(6/10) Installing R with spatial packages..."
 ./install_r.sh > /dev/null
 
 # Install Julia and spatial packages (DataFrames, GDAL, ArchGDAL, ...)
-echo "(6/9) Installing Julia with spatial packages..."
+echo "(7/10) Installing Julia with spatial packages..."
 ./src/install_julia.sh > /dev/null
 
 # Install Docker
-echo "(7/9) Installing Docker and enable service..."
+echo "(8/10) Installing Docker and enable service..."
 pacman -S --noconfirm docker > /dev/null
 systemctl start docker.service > /dev/null
 systemctl enable docker.service > /dev/null
 
 # Install JupyterLab and enable widgets
-echo "(8/9) Installing JupyterLab and enabling widgets..."
+echo "(9/10) Installing JupyterLab and enabling widgets..."
 pacman -S --noconfirm firefox jupyterlab > /dev/null
 jupyter nbextension enable --py --sys-prefix widgetsnbextension > /dev/null
 
 # Install QGIS
-echo "(9/9) Installing QGIS..."
+echo "(10/10) Installing QGIS..."
 pacman -S --noconfirm qgis > /dev/null
 
-echo Done.
+echo "Done. Please login and out, to make changes taking effect."
