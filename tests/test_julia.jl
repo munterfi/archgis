@@ -26,31 +26,26 @@
 using ArchGDAL;
 const AG = ArchGDAL;
 
-println("Check GDAL binding: Reading GeoJSON")
-AG.registerdrivers() do
-    pts = AG.read("data/pts.geojson");
-    poly = AG.read("data/poly.geojson");
-end
-
+println("* Check GDAL binding: Reading GeoJSON")
 pts = AG.read("data/pts.geojson");
 poly = AG.read("data/poly.geojson");
 
-println("Check PROJ binding: Transforming CRS")
-cent <-
-  pts %>%
-  st_transform(2056) %>%
-  st_union() %>%
-  st_centroid() %>%
-  st_as_text(pretty = TRUE)
-println("Centroid EQs (EPSG:2056): ", cent)
+println("* Check PROJ binding: Transforming CRS")
+# cent <-
+#   pts %>%
+#   st_transform(2056) %>%
+#   st_union() %>%
+#   st_centroid() %>%
+#   st_as_text(pretty = TRUE)
+println("--> Centroid EQs (EPSG:2056): ")
 
-println("Check GEOS binding: Transforming CRS")
-poly$EQ <- poly %>%
-  st_intersects(pts) %>%
-  lengths()
-poly %>%
-  data.table() %>%
-  .[order(EQ, decreasing = TRUE), .(ADMIN, EQ)] %>%
-  head(3)
+println("* Check GEOS binding: Count points in polygons")
+# poly$EQ <- poly %>%
+#   st_intersects(pts) %>%
+#   lengths()
+# poly %>%
+#   data.table() %>%
+#   .[order(EQ, decreasing = TRUE), .(ADMIN, EQ)] %>%
+#   head(3)
 
 println("*** Successfully finished ***")

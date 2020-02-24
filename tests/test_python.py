@@ -25,16 +25,17 @@
 # Pks
 import geopandas as gpd
 
-print('Check GDAL binding: Reading GeoJSON')
+print('* Check GDAL binding: Reading GeoJSON')
 pts = gpd.read_file('data/pts.geojson')
 poly = gpd.read_file('data/poly.geojson')
 
-print('Check PROJ binding: Transforming CRS')
+print('* Check PROJ binding: Transforming CRS')
 cent = pts.to_crs("EPSG:2056").unary_union.centroid.wkt
-print('Centroid EQs (EPSG:2056):', cent)
+print('--> Centroid EQs (EPSG:2056):', cent)
 
-print('Check GEOS binding: Count points in polygons')
+print('* Check GEOS binding: Count points in polygons')
 counts = gpd.sjoin(pts, poly, op='within').groupby("ADMIN")["id"].count().sort_values(ascending=False)
+print('--> Result:')
 print(counts.head(3))
 
 print('*** Successfully finished ***')

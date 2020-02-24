@@ -26,29 +26,29 @@
 library(sf)
 library(data.table)
 
-message("Check GDAL binding: Reading GeoJSON")
+message("* Check GDAL binding: Reading GeoJSON")
 pts <- st_read("data/pts.geojson", quiet = TRUE)
 poly <- st_read("data/poly.geojson", quiet = TRUE)
 
-message("Check PROJ binding: Transforming CRS")
+message("* Check PROJ binding: Transforming CRS")
 cent <-
   pts %>%
   st_transform(2056) %>%
   st_union() %>%
   st_centroid() %>%
   st_as_text(pretty = TRUE)
+message("--> Centroid EQs (EPSG:2056):", cent)
 
-message("Check GEOS binding: Count points in polygons")
+message("* Check GEOS binding: Count points in polygons")
 poly$EQ <-
   suppressMessages(st_intersects(poly, pts)) %>%
   lengths()
 
-message("\nResult: ")
+message("--> Result: ")
 poly %>%
   data.table() %>%
   .[order(EQ, decreasing = TRUE), .(ADMIN, EQ)] %>%
   head(3)
-message("\n")
 
 # Done
 message("*** Successfully finished ***")
