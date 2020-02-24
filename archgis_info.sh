@@ -15,12 +15,13 @@
 #     $ sudo ./archgis_install.sh                          #
 #                                                          #
 #  Usage:                                                  #
-#     $ ./archgis_info.sh                                  #
+#     $ archgis-info                                       #
 #                                                          #
 #  GNU General Public License 3.0 - by Merlin Unterfinger   #
 ############################################################
 
-#. /etc/profile.d/archgis_profile.sh	
+# Read ArchGIS profile
+source /etc/profile.d/archgis_profile.sh	
 
 figlet "ArchGIS"
 echo "Version:    ${ARCHGIS_VERSION}"

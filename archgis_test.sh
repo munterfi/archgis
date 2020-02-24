@@ -16,33 +16,31 @@
 #     $ sudo ./archgis_install.sh                          #
 #                                                          #
 #  Usage:                                                  #
-#     $ ./archgis_test.sh                                  #
+#     $ archgis-test                                       #
 #                                                          #
 #  GNU General Public License 3.0 - by Merlin Unterfinger   #
 ############################################################
 
+# Read ArchGIS profile
+source /etc/profile.d/archgis_profile.sh	
+
 
 echo "*** Testing ArchGIS ***"
+cd $ARCHGIS_PATH/tests/
 
-echo "(1/5) Downloading test data (USGS earthquake and counrtries)..."
-mkdir -p tests/data && cd "$_"
-curl https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson -so pts.geojson
-curl https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson -so poly.geojson
-cd - && cd tests > /dev/null
+# Test Python
+echo "(1/3) Checking Python spatial bindings..."
+pysp test_python.py
 
-echo "(3/5) Checking Python spatial bindings..."
-#source /home/$SUDO_USER/py/spatial/bin/activate
-$ARCHGIS_PATH/python/spatial/bin/python test_python.py
-
-echo "(3/5) Checking R spatial bindings..."
+# Test R 
+echo "(2/3) Checking R spatial bindings..."
 Rscript test_r.R
 
-echo "(4/5) Checking Julia spatial bindings..."
+# Test Julia
+echo "(3/3) Checking Julia spatial bindings..."
 julia test_julia.jl
 
-echo "(5/5) Removing test data..."
-cd - > /dev/null
-rm -rf tests/data
+cd -
 
 echo Done.
 

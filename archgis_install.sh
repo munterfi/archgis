@@ -43,12 +43,18 @@ pacman -S --noconfirm figlet > /dev/null
 
 # Copy files and export vars
 echo "(2/10) Copying files and exporting variables..."
+
+# Downloading test data (USGS earthquake and counrtries)..."
+mkdir -p tests/data && cd "$_"
+curl https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson -so pts.geojson
+curl https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson -so poly.geojson
+cd - > /dev/null
 # Copy files
 mkdir -p $ARCHGIS_PATH
 cp -r tests -t $ARCHGIS_PATH
 cp -t $ARCHGIS_PATH archgis_test.sh archgis_update.sh archgis_info.sh archgis_uninstall.sh
-cp -t $ARCHGIS_PATH tests
 cp -t $ARCHGIS_PATH LICENSE
+rm -rf tests/data
 # Adding archgis env vars
 echo -e '#\n# /etc/profile.d/.archgis_profile\n#\n\n# ENV' > $ARCHGIS_PROFILE
 echo 'export ARCHGIS_PATH='$ARCHGIS_PATH >> $ARCHGIS_PROFILE
@@ -81,7 +87,7 @@ echo "(5/10) Create new Python env and install spatial packages..."
 
 # Install R, spatial packages (data.table, sf, stars, hereR, ...) and RStudio
 echo "(6/10) Installing R with spatial packages..."
-./install_r.sh > /dev/null
+./src/install_r.sh > /dev/null
 
 # Install Julia and spatial packages (DataFrames, GDAL, ArchGDAL, ...)
 echo "(7/10) Installing Julia with spatial packages..."

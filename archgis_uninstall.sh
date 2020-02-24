@@ -15,7 +15,7 @@
 #     $ sudo ./archgis_install.sh                          #
 #                                                          #
 #  Usage:                                                  #
-#     $ sudo ./archgis_install.sh                          #
+#     $ sudo archgis-uninstall                             #
 #                                                          #
 #  GNU General Public License 3.0 - by Merlin Unterfinger   #
 ############################################################
@@ -24,6 +24,9 @@ if (( $EUID != 0 )); then
     echo ERROR: Uninstalling ArchGIS failed. Please run as root.
     exit 1
 fi
+
+# Read ArchGIS profile
+source /etc/profile.d/archgis_profile.sh	
 
 
 echo "*** Installing ArchGIS ***"
