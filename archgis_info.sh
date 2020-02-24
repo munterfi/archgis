@@ -20,18 +20,15 @@
 #  GNU General Public License 3.0 - by Merlin Unterfinger   #
 ############################################################
 
-. /etc/profile.d/archgis_profile.sh	
-V_GDAL=`pacman -Q gdal | awk '{ print$2 }'`
-V_GEOS=`pacman -Q geos | awk '{ print$2 }'`
-V_PROJ=`pacman -Q proj | awk '{ print$2 }'`
+#. /etc/profile.d/archgis_profile.sh	
 
-figlet 'ArchGIS'
-echo 'Version:    '$ARCHGIS_VERSION
-echo 'GDAL:       '$V_GDAL
-echo 'GEOS:       '$V_GEOS
-echo 'PROJ:       '$V_PROJ
-echo 'Location:   '$ARCHGIS_PATH
-echo 'Profile:    '$ARCHGIS_PROFILE
-echo 'License:    '$ARCHGIS_LICENSE
-echo 'Author:     '$ARCHGIS_AUTHOR
-echo ''
+figlet "ArchGIS"
+echo "Version:    ${ARCHGIS_VERSION}"
+echo "GDAL:       $(pacman -Q gdal | awk '{ print$2 }')"
+echo "GEOS:       $(pacman -Q geos | awk '{ print$2 }')"
+echo "PROJ:       $(pacman -Q proj | awk '{ print$2 }')"
+echo "Location:   ${ARCHGIS_PATH}"
+echo "Profile:    ${ARCHGIS_PROFILE}"
+echo "License:    ${ARCHGIS_LICENSE}"
+echo "Author:     ${ARCHGIS_AUTHOR}"
+echo ""

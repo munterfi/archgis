@@ -1,19 +1,18 @@
 #!/bin/bash
 ############################################################
-#  Install ArchGIS                                         #
+#  Uninstall ArchGIS                                       #
 #  Version: 0.1.0                                          #
 #  File: ~/archgis/archgis_install.sh                      #
 #                                                          #
 #  Spatial libraries and tools on Arch Linux               #
 #  -------------------------------------------------       #
-#  This script installs the spatial libraries GDAL,        #
-#  GEOS and PROJ on an exisitng Arch Linux. Then some      #
-#  common tools for reading, processing, visualizing       #
-#  and storing spatial data are installed.                 #
+#  This script uninstalls the ArchGIS extension and        #
+#  removes all environment variables and paths.            #
 #                                                          #
 #  Setup:                                                  #
 #     $ git clone https://github.com/munterfinger/archgis   #
 #     $ cd archgis                                         #
+#     $ sudo ./archgis_install.sh                          #
 #                                                          #
 #  Usage:                                                  #
 #     $ sudo ./archgis_install.sh                          #
@@ -22,16 +21,9 @@
 ############################################################
 
 if (( $EUID != 0 )); then
-    echo ERROR: Installing ArchGIS failed. Please run as root.
+    echo ERROR: Uninstalling ArchGIS failed. Please run as root.
     exit 1
 fi
-
-# Define vars
-export ARCHGIS_PATH=/opt/archgis
-export ARCHGIS_PROFILE=/etc/profile.d/archgis_profile.sh
-export ARCHGIS_VERSION="'0.1.0'"
-export ARCHGIS_LICENSE="'GNU General Public License 3.0'"
-export ARCHGIS_AUTHOR="'Merlin Unterfinger'"
 
 
 echo "*** Installing ArchGIS ***"
@@ -39,16 +31,20 @@ echo "*** Installing ArchGIS ***"
 # Update system
 echo "(1/10) Updating system..."
 pacman -Syu --noconfirm > /dev/null
-pacman -S --noconfirm figlet > /dev/null
 
 # Copy files and export vars
 echo "(2/10) Copying files and exporting variables..."
+# Define vars
+export ARCHGIS_PATH=/opt/archgis
+export ARCHGIS_PROFILE=/etc/profile.d/archgis_profile.sh
+export ARCHGIS_VERSION="'0.1.0'"
+export ARCHGIS_LICENSE="'GNU General Public License 3.0'"
+export ARCHGIS_AUTHOR="'Merlin Unterfinger'"
 # Copy files
 mkdir -p $ARCHGIS_PATH
 cp -r tests -t $ARCHGIS_PATH
-cp -t $ARCHGIS_PATH archgis_test.sh archgis_update.sh archgis_info.sh archgis_uninstall.sh
-cp -t $ARCHGIS_PATH tests
-cp -t $ARCHGIS_PATH LICENSE
+cp -t $ARCHGIS_PATH archgis_test.sh archgis_update.sh
+cp -t $ARCHGIS_PATH LICENS
 # Adding archgis env vars
 echo -e '#\n# /etc/profile.d/.archgis_profile\n#\n\n# ENV' > $ARCHGIS_PROFILE
 echo 'export ARCHGIS_PATH='$ARCHGIS_PATH >> $ARCHGIS_PROFILE
@@ -60,11 +56,7 @@ echo 'export ARCHGIS_AUTHOR='$ARCHGIS_AUTHOR >> $ARCHGIS_PROFILE
 echo -e '\n# ALIAS' >> $ARCHGIS_PROFILE
 echo alias archgis-update=$ARCHGIS_PATH/'archgis_update.sh' >> $ARCHGIS_PROFILE
 echo alias archgis-test=$ARCHGIS_PATH/'archgis_test.sh' >> $ARCHGIS_PROFILE
-echo alias archgis-info=$ARCHGIS_PATH/'archgis_info.sh' >> $ARCHGIS_PROFILE
-echo alias archgis-uninstall=$ARCHGIS_PATH/'archgis_uninstall.sh' >> $ARCHGIS_PROFILE
 echo -e '\n# APP' >> $ARCHGIS_PROFILE
-# Add to bash.bashrc
-echo "source ${ARCHGIS_PROFILE}" >> /etc/bash.bashrc
 
 # Configure yay to access AUR packages
 echo "(3/10) Configuring yay to access AUR packages..."

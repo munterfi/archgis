@@ -11,19 +11,21 @@
 #  package updates for python, R and Julia.                #
 #                                                          #
 #  Setup:                                                  #
-#     $ git clone https://github.com/munterfinger/archgis  #
+#     $ git clone https://github.com/munterfinger/archgis   #
 #     $ cd archgis                                         #
+#     $ sudo ./archgis_install.sh                          #
 #                                                          #
 #  Usage:                                                  #
 #     $ sudo ./archgis_update.sh                           #
 #                                                          #
-#  GNU General Public License 3.0 - by Merlin Unterfinger  #
+#  GNU General Public License 3.0 - by Merlin Unterfinger   #
 ############################################################
 
 if (( $EUID != 0 )); then
-    echo ERROR: Installing archgis failed. Please run as root.
+    echo ERROR: Updating ArchGIS failed. Please run as root.
     exit 1
 fi
+
 
 echo "*** Updating ArchGIS ***"
 
@@ -45,3 +47,4 @@ echo "(5/5) Updating Julia packages..."
 julia -e 'using(Pkg); Pkg.update();' > /dev/null
 
 echo Done.
+
