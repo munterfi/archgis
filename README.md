@@ -37,6 +37,28 @@ This will take a few minutes: Time for a coffee :)
 
 
 ## Testing ArchGIS
+
+To print information about the installed ArchGIS version, type:
+
+``` bash
+archgis-info
+>     _             _      ____ ___ ____  
+>    / \   _ __ ___| |__  / ___|_ _/ ___| 
+>   / _ \ | '__/ __| '_ \| |  _ | |\___ \ 
+>  / ___ \| | | (__| | | | |_| || | ___) |
+> /_/   \_\_|  \___|_| |_|\____|___|____/ 
+>                                         
+> Version:    0.1.0
+> GDAL:       3.0.4-2
+> GEOS:       3.8.0-1
+> PROJ:       6.3.1-1
+> Location:   /opt/archgis
+> Profile:     /etc/profile.d/archgis_profile.sh
+> License:    GNU General Public License 3.0
+> Author:     Merlin Unterfinger
+> 
+```
+
 In order to test the ArchGIS installation run the test script:
 ``` bash
 ./archgis_test.sh
