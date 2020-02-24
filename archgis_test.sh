@@ -24,21 +24,22 @@ echo "*** Testing ArchGIS ***"
 
 echo "(1/5) Downloading test data (USGS earthquake and counrtries)..."
 mkdir -p tests/data && cd "$_"
-curl https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson -o pts.geojson
-curl https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson -o poly.geojson
-cd - && cd tests
+curl https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson -so pts.geojson
+curl https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson -so poly.geojson
+cd - && cd tests > /dev/null
 
 echo "(3/5) Checking Python spatial bindings..."
 #source /home/$SUDO_USER/py/spatial/bin/activate
-/home/$USER/py/spatial/bin/python test_python.py
+$ARCHGIS_PATH/python/spatial/bin/python test_python.py
 
 echo "(3/5) Checking R spatial bindings..."
 Rscript test_r.R
 
 echo "(4/5) Checking Julia spatial bindings..."
-#julia -e test_julia.jl
+julia test_julia.jl
 
 echo "(5/5) Removing test data..."
-cd - && rm -rf tests/data
+cd - > /dev/null
+rm -rf tests/data
 
 echo Done.
