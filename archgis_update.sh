@@ -48,7 +48,7 @@ source deactivate
 
 # Update R
 echo "(4/5) Updating R packages..."
-Rscript -e 'update.packages(ask = FALSE, repo = "http://cran.rstudio.com/")' > /dev/null
+Rscript -e 'update.packages(ask = FALSE, repo = "http://cran.rstudio.com/")' &> /dev/null
 
 # Update Julia
 echo "(5/5) Updating Julia packages..."
