@@ -38,13 +38,12 @@ pacman -Syu --noconfirm > /dev/null
 
 # Update using yay
 echo "(2/5) Updating yay packages..."
-sudo -u $SUDO_USER yay -Syu --noconfirm > /dev/null
+sudo -u $SUDO_USER yay -Syu --noconfirm --aur > /dev/null
 
 # Update Python venv
 echo "(3/5) Updating Python packages..."
 source $ARCHGIS_PATH/python/spatial/bin/activate
 pip install -U $(pip freeze | awk '{split($0, a, "=="); print a[1]}') > /dev/null
-source deactivate
 
 # Update R
 echo "(4/5) Updating R packages..."

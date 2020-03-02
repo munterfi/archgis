@@ -68,6 +68,7 @@ echo alias archgis-update=$ARCHGIS_PATH/'archgis_update.sh' >> $ARCHGIS_PROFILE
 echo alias archgis-test=$ARCHGIS_PATH/'archgis_test.sh' >> $ARCHGIS_PROFILE
 echo alias archgis-info=$ARCHGIS_PATH/'archgis_info.sh' >> $ARCHGIS_PROFILE
 echo alias archgis-uninstall=$ARCHGIS_PATH/'archgis_uninstall.sh' >> $ARCHGIS_PROFILE
+echo alias "alias sudo='sudo '" >> $ARCHGIS_PROFILE # Enable also for root user
 echo -e '\n# APP' >> $ARCHGIS_PROFILE
 # Add to bash.bashrc
 echo "source ${ARCHGIS_PROFILE}" >> /etc/bash.bashrc

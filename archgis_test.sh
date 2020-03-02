@@ -30,7 +30,7 @@ cd $ARCHGIS_PATH/tests/
 
 # Test Python
 echo "(1/3) Checking Python spatial bindings..."
-pysp test_python.py
+$ARCHGIS_PATH/python/spatial/bin/python test_python.py
 
 # Test R 
 echo "(2/3) Checking R spatial bindings..."
@@ -40,7 +40,7 @@ Rscript test_r.R
 echo "(3/3) Checking Julia spatial bindings..."
 julia test_julia.jl
 
-cd -
+cd - > /dev/null
 
 echo Done.
 

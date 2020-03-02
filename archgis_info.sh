@@ -23,6 +23,7 @@
 # Read ArchGIS profile
 source /etc/profile.d/archgis_profile.sh	
 
+
 figlet "ArchGIS"
 echo "Version:    ${ARCHGIS_VERSION}"
 echo "GDAL:       $(pacman -Q gdal | awk '{ print$2 }')"
@@ -30,6 +31,7 @@ echo "GEOS:       $(pacman -Q geos | awk '{ print$2 }')"
 echo "PROJ:       $(pacman -Q proj | awk '{ print$2 }')"
 echo "Location:   ${ARCHGIS_PATH}"
 echo "Profile:    ${ARCHGIS_PROFILE}"
-echo "License:    ${ARCHGIS_LICENSE}"
 echo "Author:     ${ARCHGIS_AUTHOR}"
+echo "License:    ${ARCHGIS_LICENSE}"
 echo ""
+
