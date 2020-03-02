@@ -54,14 +54,14 @@ archgis-info
 > PROJ:       6.3.1-1
 > Location:   /opt/archgis
 > Profile:     /etc/profile.d/archgis_profile.sh
-> License:    GNU General Public License 3.0
 > Author:     Merlin Unterfinger
+> License:    GNU General Public License 3.0
 > 
 ```
 
 In order to test the ArchGIS installation run the test script:
 ``` bash
-./archgis_test.sh
+archgis-test
 ```
 
 This will download earthquake data from the USGS Hazard feed and country polygons from Natural Earth.
@@ -74,7 +74,7 @@ are installed properly and the bindings to Python, R and Julia are correct.
 ## Updating ArchGIS
 To update ArchGIS including the Python, R and Julia packages run the updater script:
 ``` bash
-sudo ./archgis_update.sh
+sudo archgis-update
 ```
 
 ## Examples
