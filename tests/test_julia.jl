@@ -30,16 +30,16 @@ println("* Check GDAL binding: Reading GeoJSON")
 pts = AG.read("data/pts.geojson");
 poly = AG.read("data/poly.geojson");
 
-println("* Check PROJ binding: Transforming CRS")
+# println("* Check PROJ binding: Transforming CRS")
 # cent <-
 #   pts %>%
 #   st_transform(2056) %>%
 #   st_union() %>%
 #   st_centroid() %>%
 #   st_as_text(pretty = TRUE)
-println("--> Centroid EQs (EPSG:2056): ")
+# println("--> Centroid EQs (EPSG:2056): ")
 
-println("* Check GEOS binding: Count points in polygons")
+# println("* Check GEOS binding: Count points in polygons")
 # poly$EQ <- poly %>%
 #   st_intersects(pts) %>%
 #   lengths()
