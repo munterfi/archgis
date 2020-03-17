@@ -6,6 +6,7 @@ pacman -S --noconfirm tk r
 # Install packages
 Rscript -e 'install.packages(c("magrittr", "data.table", "dplyr"),repo = "http://cran.rstudio.com/")'
 Rscript -e 'install.packages(c("sf", "stars", "stplanr", "hereR"),repo = "http://cran.rstudio.com/")'
+Rscript -e 'install.packages(c("osmdata", "dodgr"),repo = "http://cran.rstudio.com/")'
 Rscript -e 'install.packages(c("ggplot2", "mapview", "plotly", "ggmap"),repo = "http://cran.rstudio.com/")'
 
 # Install R kernel for JupyterLab
