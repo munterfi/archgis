@@ -225,11 +225,19 @@ systemctl restart systemd-networkd
 systemctl enable systemd-networkd
 ```
 
-Finally set a DNS nameserver, in this example from Google (or any alternative as for example 1.1.1.1):
+Finally set a DNS nameserver, in this example from Cloudflare (for alternatives
+check this [page](https://wiki.archlinux.org/index.php/Alternative_DNS_services)):
+
+``` bash
+echo 'name_servers="1.1.1.1 1.0.0.1"' >> /etc/resolvconf.conf
+```
+
+Alternative way (not recommended since you have to write protect the file
+in order to prevent it from beeing overwritten by resolveconf after reboot):
 ``` bash
 vim /etc/resolv.conf
-> nameserver 8.8.8.8
-> nameserver 8.8.4.4
+> nameserver 1.1.1.1
+> nameserver 1.0.0.1
 > write and quit: :wq
 ```
 

@@ -32,9 +32,8 @@ cd archgis
 sudo ./archgis_install.sh
 ```
 This will take a few minutes: Time for a coffee :)
-
 ![](/docs/figures/archgis_desktop.png)
-
+(archgis-info, RStudio, jupyterlab)
 
 ## Testing ArchGIS
 
@@ -49,11 +48,11 @@ archgis-info
 > /_/   \_\_|  \___|_| |_|\____|___|____/ 
 >                                         
 > Version:    0.1.0
-> GDAL:       3.0.4-2
+> GDAL:       3.0.4-4
 > GEOS:       3.8.0-1
 > PROJ:       6.3.1-1
 > Location:   /opt/archgis
-> Profile:     /etc/profile.d/archgis_profile.sh
+> Profile:    /etc/profile.d/archgis_profile.sh
 > Author:     Merlin Unterfinger
 > License:    GNU General Public License 3.0
 > 
@@ -72,17 +71,14 @@ are installed properly and the bindings to Python, R and Julia are correct.
 
 
 ## Updating ArchGIS
-To update ArchGIS including the Python, R and Julia packages run the updater script:
+To update ArchGIS including the Python, R and Julia packages run the updater script as root:
 ``` bash
 sudo archgis-update
 ```
 
 ## Examples
-### PostGIS
-
-### OSRM
-
-### JupyterLab
+Docker: PostGIS, OSRM
+JupyterLab: Choose spatial
 
 ## References
 
