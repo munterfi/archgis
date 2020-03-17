@@ -63,7 +63,8 @@ In order to test the ArchGIS installation run the test script:
 archgis-test
 ```
 
-This will download earthquake data from the USGS Hazard feed and country polygons from Natural Earth.
+This command uses earthquake data from the USGS Hazard feed and country polygons
+from Natural Earth, which have been downloaded during the installation of ArchGIS.
 These data sets are then read in by Python, R and Julia using GDAL to check the binding
 to this library. Then CRS transformations are performed using PROJ and spatial
 intersections using GEOS. If the test finishes successfully, the spatial libraries
@@ -75,6 +76,7 @@ To update ArchGIS including the Python, R and Julia packages run the updater scr
 ``` bash
 sudo archgis-update
 ```
+Since Arch Linux has a very active community, updates should be carried out regularly.
 
 ## Examples
 Docker: PostGIS, OSRM
