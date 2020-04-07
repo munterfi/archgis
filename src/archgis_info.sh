@@ -2,7 +2,7 @@
 ############################################################
 #  Info about ArchGIS                                      #
 #  Version: 0.1.0                                          #
-#  File: ~/archgis/archgis_info.sh                         #
+#  File: ~/archgis/src/archgis_info.sh                     #
 #                                                          #
 #  Spatial libraries and tools on Arch Linux               #
 #  -------------------------------------------------       #

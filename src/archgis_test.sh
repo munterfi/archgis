@@ -2,7 +2,7 @@
 ############################################################
 #  Test ArchGIS                                            #
 #  Version: 0.1.0                                          #
-#  File: ~/archgis/archgis_test.sh                         #
+#  File: ~/archgis/src/archgis_test.sh                     #
 #                                                          #
 #  Test spatial libraries and tools on Arch Linux          #
 #  -------------------------------------------------       #

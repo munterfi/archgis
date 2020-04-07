@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install python virtual envs
-pacman -S --noconfirm python-virtualenv
+pacman -S --noconfirm python-virtualenv python-distlib
 
 # Create new env "spatial" in /opt/archgis
 mkdir -p $ARCHGIS_PATH'/python' && cd "$_"

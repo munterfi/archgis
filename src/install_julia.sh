@@ -15,15 +15,15 @@ echo 'export PATH=$PATH:'$ARCHGIS_PATH'/julia/bin' >> $ARCHGIS_PROFILE
 source $ARCHGIS_PROFILE
 
 # Install packages
-julia -e 'import Pkg; Pkg.add("DataFrames");'
-julia -e 'import Pkg; Pkg.add("GDAL");'
-julia -e 'import Pkg; Pkg.add("ArchGDAL");'
-julia -e 'import Pkg; Pkg.add("LibSpatialIndex");'
-julia -e 'import Pkg; Pkg.add("LibGEOS");'
-julia -e 'import Pkg; Pkg.add("Distributions");'
-julia -e 'import Pkg; Pkg.add("Plots");'
-julia -e 'import Pkg; Pkg.add("StatsPlots");'
+julia -e 'import Pkg; Pkg.add("DataFrames");' >/dev/null
+julia -e 'import Pkg; Pkg.add("GDAL");' >/dev/null
+julia -e 'import Pkg; Pkg.add("ArchGDAL");' >/dev/null
+julia -e 'import Pkg; Pkg.add("LibSpatialIndex");' >/dev/null
+julia -e 'import Pkg; Pkg.add("LibGEOS");' >/dev/null
+julia -e 'import Pkg; Pkg.add("Distributions");' >/dev/null
+julia -e 'import Pkg; Pkg.add("Plots");' >/dev/null
+julia -e 'import Pkg; Pkg.add("StatsPlots");' >/dev/null
 
 # Make julia available to jupyter lab
-julia -e 'import Pkg; Pkg.add("IJulia");'
+julia -e 'import Pkg; Pkg.add("IJulia");' >/dev/null
 

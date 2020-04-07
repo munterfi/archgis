@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # Clone yay from GitHub
-git clone https://aur.archlinux.org/yay.git
+sudo -u $SUDO_USER git clone --quiet https://aur.archlinux.org/yay.git
 
 # Install
-cd yay && sudo -u $SUDO_USER makepkg -si --noconfirm
+cd yay && sudo -u $SUDO_USER makepkg -si --noconfirm 2>&1 >/dev/null
 
 # Remove repo
-cd - && rm -rf yay
+cd - >/dev/null
+rm -rf yay >/dev/null
 

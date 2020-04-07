@@ -29,7 +29,7 @@ Clone the repository from github and run the installer script:
 ``` bash
 git clone https://github.com/munterfinger/archgis.git
 cd archgis
-sudo ./archgis_install.sh
+sudo ./install.sh
 ```
 This will take a few minutes: Time for a coffee :)
 ![](/docs/figures/archgis_desktop.png)
