@@ -88,7 +88,7 @@ echo "(5/10) Create new Python env and install spatial packages..."
 
 # Install R, spatial packages (data.table, sf, stars, hereR, ...) and RStudio
 echo "(6/10) Installing R with spatial packages..."
-./src/install_r.sh &> /dev/null
+./src/install_r.sh 2>&1 >/dev/null
 
 # Install Julia and spatial packages (DataFrames, GDAL, ArchGDAL, ...)
 echo "(7/10) Installing Julia with spatial packages..."
