@@ -47,7 +47,7 @@ pip install -U $(pip freeze | awk '{split($0, a, "=="); print a[1]}') > /dev/nul
 
 # Update R
 echo "(4/5) Updating R packages..."
-Rscript -e 'update.packages(ask = FALSE, repo = "http://cran.rstudio.com/")' &> /dev/null
+Rscript -e 'update.packages(ask = FALSE, repo = "http://cran.rstudio.com/")' 2>&1 >/dev/null
 
 # Update Julia
 echo "(5/5) Updating Julia packages..."
