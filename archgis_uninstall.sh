@@ -25,6 +25,14 @@ if (( $EUID != 0 )); then
     exit 1
 fi
 
+echo "Do you wish to remove ArchGIS inluding all spatial libraries?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) break;;
+        No ) exit;;
+    esac
+done
+
 # Read ArchGIS profile
 source /etc/profile.d/archgis_profile.sh	
 
@@ -33,31 +41,31 @@ echo "*** Uninstalling ArchGIS ***"
 
 # Update system
 echo "(1/10) Updating core, extra and community packages..."
-pacman -Syu --noconfirm > /dev/null
+pacman -Syu --noconfirm # > /dev/null
 
 echo "(2/10) Removing tools (JupyterLab, QGIS)..."
-pacman -Rs --noconfirm firefox jupyterlab qgis > /dev/null
-sudo -u $SUDO_USER yay -Rs --noconfirm rstudio-desktop-bin > /dev/null
+pacman -Rs --noconfirm firefox jupyterlab qgis # > /dev/null
+sudo -u $SUDO_USER yay -Rs --noconfirm rstudio-desktop-bin # > /dev/null
 
 echo "(2/10) Removing Docker..."
-pacman -Rs --noconfirm docker > /dev/null
+pacman -Rs --noconfirm docker # > /dev/null
 
 echo "(2/10) Removing Python, R and Julia..."
-pacman -Rs --noconfirm r > /dev/null
-rm -rf $ARCHGIS_PATH/python > /dev/null
-rm -rf $ARCHGIS_PATH/julia > /dev/null
+pacman -Rs --noconfirm r # > /dev/null
+rm -rf $ARCHGIS_PATH/python # > /dev/null
+rm -rf $ARCHGIS_PATH/julia # > /dev/null
 
 echo "(2/10) Removing spatial libaries..."
-pacman -Rs --noconfirm gcc-fortran gdal geos proj > /dev/null
-sudo -u $SUDO_USER yay -Rs --noconfirm udunits > /dev/null
+pacman -Rs --noconfirm gcc-fortran gdal geos proj # > /dev/null
+sudo -u $SUDO_USER yay -Rs --noconfirm udunits # > /dev/null
 
 echo "(2/10) Removing ArchGIS profile and env vars..."
-rm -rf $ARCHGIS_PATH > /dev/null
-rm -rf $ARCHGIS_PROFILE > /dev/null
-#echo "source ${ARCHGIS_PROFILE}" >> /etc/bash.bashrc
+rm -rf $ARCHGIS_PATH # > /dev/null
+rm -rf $ARCHGIS_PROFILE # > /dev/null
+sed -i '/archgis_profile/d' /etc/bash.bashrc
 
 echo "(2/10) Removing yay..."
-pacman -Rs --noconfirm yay > /dev/null
+pacman -Rs --noconfirm yay # > /dev/null
 
 echo "Done. Please logout and login, to make changes taking effect."
 
