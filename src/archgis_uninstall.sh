@@ -10,14 +10,14 @@
 #  removes all environment variables and paths.            #
 #                                                          #
 #  Setup:                                                  #
-#     $ git clone https://github.com/munterfinger/archgis   #
+#     $ git clone https://github.com/munterfi/archgis      #
 #     $ cd archgis                                         #
 #     $ sudo ./archgis_install.sh                          #
 #                                                          #
 #  Usage:                                                  #
 #     $ sudo archgis-uninstall                             #
 #                                                          #
-#  GNU General Public License 3.0 - by Merlin Unterfinger   #
+#  GNU General Public License 3.0 - by Merlin Unterfinger  #
 ############################################################
 
 if (( $EUID != 0 )); then

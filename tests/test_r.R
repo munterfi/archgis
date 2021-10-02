@@ -11,7 +11,7 @@
 #  a spatial intersection operation using GEOS.            #
 #                                                          #
 #  Setup:                                                  #
-#     $ git clone https://github.com/munterfinger/archgis   #
+#     $ git clone https://github.com/munterfi/archgis      #
 #     $ cd archgis                                         #
 #     $ sudo ./archgis_install.sh                          #
 #     $ sudo ./archgis_update.sh                           #
@@ -19,7 +19,7 @@
 #  Usage:                                                  #
 #     $ ./archgis_test.sh                                  #
 #                                                          #
-#  GNU General Public License 3.0 - by Merlin Unterfinger   #
+#  GNU General Public License 3.0 - by Merlin Unterfinger  #
 ############################################################
 
 # Pks

@@ -11,14 +11,14 @@
 #  correct binding in python, R and Julia.                 #
 #                                                          #
 #  Setup:                                                  #
-#     $ git clone https://github.com/munterfinger/archgis   #
+#     $ git clone https://github.com/munterfi/archgis      #
 #     $ cd archgis                                         #
 #     $ sudo ./archgis_install.sh                          #
 #                                                          #
 #  Usage:                                                  #
 #     $ archgis-test                                       #
 #                                                          #
-#  GNU General Public License 3.0 - by Merlin Unterfinger   #
+#  GNU General Public License 3.0 - by Merlin Unterfinger  #
 ############################################################
 
 # Read ArchGIS profile

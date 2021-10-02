@@ -11,7 +11,7 @@ curl "https://julialang-s3.julialang.org/bin/linux/x64/1.3/${vers}-linux-x86_64.
 tar -xzf julia.tar.gz && rm -rf julia.tar.gz && mv $vers julia && cd -
 
 # Export PATH
-echo 'export PATH=$PATH:'$ARCHGIS_PATH'/julia/bin' >> $ARCHGIS_PROFILE
+echo 'export PATH=$PATH:'$ARCHGIS_PATH'/julia/bin' >>$ARCHGIS_PROFILE
 source $ARCHGIS_PROFILE
 
 # Install packages
@@ -26,4 +26,3 @@ julia -e 'import Pkg; Pkg.add("StatsPlots");' >/dev/null
 
 # Make julia available to jupyter lab
 julia -e 'import Pkg; Pkg.add("IJulia");' >/dev/null
-

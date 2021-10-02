@@ -8,11 +8,12 @@ with a desktop environment (e.g. Gnome) as starting point. The desktop environme
 is required as ArchGIS also contains GUI applications (JupyterLab, RStudio, QGIS).
 To set up a fresh Arch Linux installation, follow these instructions: [Setting up Arch Linux for ArchGIS](docs/SETUP.md)
 
-**Note:** ArchGIS is designed to be installed by user with sudo rights,
-but not as root itself. If no user with root privileges exists yet,
+**Note:** ArchGIS is designed to be installed by user with sudo rights, 
+but not as root itself. If no user with root privileges exists yet, 
 create one and log in with the newly created user before proceeding with the
 installation:
-``` bash
+
+```bash
 # Replace <username> with the user name:
 useradd -m <username>
 passwd <username>
@@ -25,12 +26,15 @@ visudo
 ```
 
 ## Installing ArchGIS
+
 Clone the repository from github and run the installer script:
-``` bash
-git clone https://github.com/munterfinger/archgis.git
+
+```bash
+git clone https://github.com/munterfi/archgis.git
 cd archgis
 sudo ./install.sh
 ```
+
 This will take a few minutes: Time for a coffee :)
 ![](/docs/figures/archgis_desktop.png)
 (archgis-info, RStudio, jupyterlab)
@@ -39,7 +43,7 @@ This will take a few minutes: Time for a coffee :)
 
 To print information about the installed ArchGIS version, type:
 
-``` bash
+```bash
 archgis-info
 >     _             _      ____ ___ ____  
 >    / \   _ __ ___| |__  / ___|_ _/ ___| 
@@ -59,7 +63,8 @@ archgis-info
 ```
 
 In order to test the ArchGIS installation run the test script:
-``` bash
+
+```bash
 archgis-test
 ```
 
@@ -70,21 +75,24 @@ to this library. Then CRS transformations are performed using PROJ and spatial
 intersections using GEOS. If the test finishes successfully, the spatial libraries
 are installed properly and the bindings to Python, R and Julia are correct.
 
-
 ## Updating ArchGIS
+
 To update ArchGIS including the Python, R and Julia packages run the updater script as root:
-``` bash
+
+```bash
 sudo archgis-update
 ```
+
 Since Arch Linux has a very active community, updates should be carried out regularly.
 
 ## Examples
+
 Docker: PostGIS, OSRM
 JupyterLab: Choose spatial
 
 ## References
 
-* Arch Linux: https://archlinux.org
-* GDAL: https://gdal.org
-* PROJ: https://proj.org
-* GEOS: https://trac.osgeo.org/geos
+* [Arch Linux](https://archlinux.org)
+* [GDAL](https://gdal.org)
+* [PROJ](https://proj.org)
+* [GEOS](https://trac.osgeo.org/geos)
